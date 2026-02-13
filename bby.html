@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentine's Day</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            background: linear-gradient(135deg, #c5004f 0%, #bd0140 25%, #4b0019 50%, #46001c 75%, #e91e63 100%);
+            color: #da0b0b;
+            overflow-x: hidden;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .app-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-auto;
+            background: linear-gradient(135deg, #c91e63 0%, #e91e63 25%, #f06292 50%, #c91e63 75%, #e91e63 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        /* Header with animated title */
+        header {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #ffb3d9;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .title-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ffb3d9;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(255, 179, 217, 0.6), 0 0 30px rgba(233, 30, 99, 0.4);
+            animation: fadeInDown 1s ease-out;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ffb3d9;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: slideInDown 0.8s ease-out;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            color: #ffb3d9;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-timers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .timer-box {
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid #ffb3d9;
+        }
+
+        .timer-box:hover {
+            transform: scale(1.1) rotateY(5deg);
+            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.7);
+        }
+
+        .timer-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            display: block;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* Envelope Section */
+        .envelope-section {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ffb3d9;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: slideInDown 0.8s ease-out 0.1s both;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .envelope-btn {
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+            color: #ffffff;
+            border: 3px solid #ffb3d9;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.5);
+            font-family: 'Playfair Display', Georgia, serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .envelope-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.7);
+        }
+
+        .envelope-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .love-letter {
+            display: none;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(216, 27, 96, 0.1));
+            border-left: 5px solid #ffb3d9;
+            border: 2px solid #ffb3d9;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            border-radius: 15px;
+            animation: slideInUp 0.6s ease-out;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .love-letter.show {
+            display: block;
+        }
+
+        /* Reasons Section */
+        .reasons-section {
+            margin-bottom: 2rem;
+            animation: slideInDown 0.8s ease-out 0.2s both;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #ffb3d9;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '💕';
+            font-size: 1.5rem;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 3px solid #f06292;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease-out both;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .reason-card:nth-child(1) { animation-delay: 0s; border-color: #d81b60; }
+        .reason-card:nth-child(2) { animation-delay: 0.1s; border-color: #e91e63; }
+        .reason-card:nth-child(3) { animation-delay: 0.2s; border-color: #f06292; }
+        .reason-card:nth-child(4) { animation-delay: 0.3s; border-color: #c91e63; }
+        .reason-card:nth-child(5) { animation-delay: 0.4s; border-color: #ffb3d9; }
+
+        .reason-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #ffb3d9;
+            box-shadow: 0 20px 50px rgba(255, 179, 217, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .reason-number {
+            font-size: 2.5rem;
+            color: #ffb3d9;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .reason-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin-bottom: 2rem;
+            animation: slideInDown 0.8s ease-out 0.3s both;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 320px;
+            border: 3px solid #ffb3d9;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease-out both;
+            cursor: pointer;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 0s; }
+        .photo-card:nth-child(2) { animation-delay: 0.1s; }
+        .photo-card:nth-child(3) { animation-delay: 0.2s; }
+
+        .photo-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 179, 217, 0.5);
+            border-color: #d81b60;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.3), rgba(240, 98, 146, 0.3));
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 3px solid #ffb3d9;
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #ffffff;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart-animation {
+            display: inline-block;
+            animation: heartBeat 0.6s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .countdown-timers {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            }
+
+            .timer-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="app-wrapper">
+   <header>
+    <div class="title-container">
+     <h1>💕 Happy Valentine's Day 💕</h1>
+     <p class="subtitle">For My Sachuuuuu❤️ <span id="partner-display">Love</span></p>
+    </div>
+   </header>
+   <main><!-- Countdown Timer -->
+    <section class="countdown-section">
+     <div class="countdown-title">
+      Countdown to Forever
+     </div>
+     <div class="countdown-timers">
+      <div class="timer-box"><span class="timer-number" id="days">0</span> <span class="timer-label">Days</span>
+      </div>
+      <div class="timer-box"><span class="timer-number" id="hours">0</span> <span class="timer-label">Hours</span>
+      </div>
+      <div class="timer-box"><span class="timer-number" id="minutes">0</span> <span class="timer-label">Minutes</span>
+      </div>
+      <div class="timer-box"><span class="timer-number" id="seconds">0</span> <span class="timer-label">Seconds</span>
+      </div>
+     </div>
+    </section><!-- Love Letter Envelope -->
+    <section class="envelope-section"><button class="envelope-btn" onclick="toggleLoveLetter()">💌 Open My Heart 💌</button>
+     <div class="love-letter" id="love-letter">
+      <p id="love-message-text">My Babyy❤️,</p>
+      <p style="margin-top: 1rem;">Words can't express how much you mean to me. Every moment with you is precious, every laugh is unforgettable, and every day is brighter because of you.</p>
+      <p style="margin-top: 1rem;">With all my love,<br>
+       Forever yours</p>
+     </div>
+    </section><!-- Reasons Why I Love You -->
+    <section class="reasons-section">
+     <h2 class="section-title">Reasons Why I Love You</h2>
+     <div class="reasons-grid" id="reasons-grid">
+      <div class="reason-card">
+       <div class="reason-number">
+        1
+       </div>
+       <p class="reason-text" id="reason-1">Your beautiful smile brightens my darkest days</p>
+      </div>
+      <div class="reason-card">
+       <div class="reason-number">
+        2
+       </div>
+       <p class="reason-text" id="reason-2">The way you've been tolerating me since 4years</p>
+      </div>
+      <div class="reason-card">
+       <div class="reason-number">
+        3
+       </div>
+       <p class="reason-text" id="reason-3">The way of improving and caring me</p>
+      </div>
+      <div class="reason-card">
+       <div class="reason-number">
+        4
+       </div>
+       <p class="reason-text" id="reason-4">You make me a better person</p>
+      </div>
+      <div class="reason-card">
+       <div class="reason-number">
+        5
+       </div>
+       <p class="reason-text" id="reason-5">With you, I feel like I'm home❤️</p>
+      </div>
+     </div>
+    </section><!-- Photo Gallery -->
+    <section class="gallery-section">
+     <h2 class="section-title">Our Precious Moments</h2>
+     <div class="gallery-grid" id="gallery-grid">
+      <div class="photo-card">
+       <div class="photo-placeholder">
+        📸
+       </div>
+      </div>
+      <div class="photo-card">
+       <div class="photo-placeholder">
+        📸
+       </div>
+      </div>
+      <div class="photo-card">
+       <div class="photo-placeholder">
+        📸
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer>
+    Made with <span class="heart-animation">❤️</span> for Love of My Life (Darluuu❤️)
+   </footer>
+  </div>
+  <script>
+        // Initialize Element SDK
+        const defaultConfig = {
+            partner_name: "My Love",
+            love_message: "My dearest,\n\nWords can't express how much you mean to me. Every moment with you is precious, every laugh is unforgettable, and every day is brighter because of you.\n\nWith all my love,\nForever yours",
+            reason_1: "Your beautiful smile brightens my darkest days",
+            reason_2: "Your kindness and compassion inspire me",
+            reason_3: "We laugh together at the same silly things",
+            reason_4: "You make me a better person",
+            reason_5: "With you, I feel like I'm home",
+            photo_url_1: "IMG-20231231-WA0002.jpg",
+            photo_url_2: "IMG-20260208-WA0035.jpg",
+            photo_url_3: "IMG1.jpg"
+        };
+
+        let config = { ...defaultConfig };
+
+        async function initializeSDK() {
+            if (!window.elementSdk) return;
+
+            await window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (cfg) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (cfg) => new Map([
+                    ["partner_name", cfg.partner_name || defaultConfig.partner_name],
+                    ["love_message", cfg.love_message || defaultConfig.love_message],
+                    ["reason_1", cfg.reason_1 || defaultConfig.reason_1],
+                    ["reason_2", cfg.reason_2 || defaultConfig.reason_2],
+                    ["reason_3", cfg.reason_3 || defaultConfig.reason_3],
+                    ["reason_4", cfg.reason_4 || defaultConfig.reason_4],
+                    ["reason_5", cfg.reason_5 || defaultConfig.reason_5],
+                    ["photo_url_1", cfg.photo_url_1 || defaultConfig.photo_url_1],
+                    ["photo_url_2", cfg.photo_url_2 || defaultConfig.photo_url_2],
+                    ["photo_url_3", cfg.photo_url_3 || defaultConfig.photo_url_3]
+                ])
+            });
+        }
+
+        async function onConfigChange(newConfig) {
+            config = newConfig;
+
+            // Update partner name
+            document.getElementById('partner-display').textContent = config.partner_name || defaultConfig.partner_name;
+
+            // Update love message
+            document.getElementById('love-message-text').textContent = config.love_message || defaultConfig.love_message;
+
+            // Update reasons
+            for (let i = 1; i <= 5; i++) {
+                const reasonKey = `reason_${i}`;
+                document.getElementById(reasonKey).textContent = config[reasonKey] || defaultConfig[reasonKey];
+            }
+
+            // Update photo gallery
+            const photos = [
+                config.photo_url_1,
+                config.photo_url_2,
+                config.photo_url_3
+            ];
+
+            const photoCards = document.querySelectorAll('.photo-card');
+            photoCards.forEach((card, index) => {
+                card.innerHTML = '';
+                if (photos[index] && photos[index].trim()) {
+                    const img = document.createElement('img');
+                    img.src = photos[index];
+                    img.alt = `Memory ${index + 1}`;
+                    img.loading = "lazy";
+                    img.onerror = function() {
+                        console.error('Image failed to load:', this.src);
+                        this.style.display = 'none';
+                        card.innerHTML = '<div class="photo-placeholder">📸</div>';
+                    };
+                    card.appendChild(img);
+                } else {
+                    card.innerHTML = '<div class="photo-placeholder">📸</div>';
+                }
+            });
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const valentinesDay = new Date(new Date().getFullYear(), 1, 14, 0, 0, 0).getTime();
+            const now = new Date().getTime();
+
+            let distance = valentinesDay - now;
+
+            if (distance < 0) {
+                const nextYear = new Date(new Date().getFullYear() + 1, 1, 14, 0, 0, 0).getTime();
+                distance = nextYear - now;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Toggle Love Letter
+        function toggleLoveLetter() {
+            const letter = document.getElementById('love-letter');
+            letter.classList.toggle('show');
+        }
+
+        // Initialize
+        initializeSDK();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cd433a19465ece6',t:'MTc3MDk4NDQwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

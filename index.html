@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sachuuuuu ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* INTRO SCREEN */
+#intro{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    animation:fadeOut 3s forwards;
+    animation-delay:3s;
+}
+
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden;}
+}
+
+.name{
+    font-size:50px;
+    font-weight:600;
+    animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px white;}
+    to{text-shadow:0 0 30px red;}
+}
+
+/* MAIN CONTENT */
+#main{
+    padding:20px;
+    display:none;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.gallery img{
+    width:45%;
+    margin:5px;
+    border-radius:15px;
+}
+
+/* Buttons */
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4f81;
+    font-weight:600;
+    margin:10px;
+}
+
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    animation:float 5s linear infinite;
+}
+@keyframes float{
+    to{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+    <h1>For My Love ❤️</h1>
+    <div class="name">Sachuuuuu</div>
+</div>
+
+<div id="main">
+
+<audio autoplay loop>
+<source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+<h2>Happy 4 Beautiful Years 💖</h2>
+
+<p>
+आजदेखि ४ वर्ष अघि तिमी मेरो जीवनमा आयौ।
+तिमी मेरो शान्ति, मेरो शक्ति र मेरो भविष्य हौ।
+म सधैं तिमीलाई नै रोज्नेछु।
+</p>
+
+<h3>Love Meter 💓</h3>
+<div style="width:90%;background:white;margin:auto;border-radius:20px;">
+<div id="bar" style="height:20px;width:0%;background:red;border-radius:20px;"></div>
+</div>
+
+<div class="gallery">
+<img src="IMG-20231231-WA0002.jpg">
+<img src="IMG-20260208-WA0035.jpg">
+<img src="IMG20251111160845.jpg">
+</div>
+
+<h3>Will You Stay Forever? 💍</h3>
+<button onclick="celebrate()">YES ❤️</button>
+
+</div>
+
+<script>
+
+/* Show main after intro */
+setTimeout(()=>{
+document.getElementById("main").style.display="block";
+},3000);
+
+/* Love Meter */
+let w=0;
+let meter=setInterval(()=>{
+if(w>=100) clearInterval(meter);
+else{
+w++;
+document.getElementById("bar").style.width=w+"%";
+}
+},30);
+
+/* Floating Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+},600);
+
+/* Celebration */
+function celebrate(){
+alert("Forever With You Sachi ❤️");
+}
+</script>
+
+</body>
+</html>
